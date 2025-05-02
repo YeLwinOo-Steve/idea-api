@@ -27,29 +27,22 @@ class IdeaRepository extends BasicFunctions
         try {
 
             DB::beginTransaction();
-
             $categories = explode(',', $data["category"]);
-
             $idea = $this->model->create($data);
-
             $idea->categories()->attach($categories);
-
 
             if( isset($data["document"])){
 
                 $documents = json_decode($data["document"]);
-
                 foreach ($documents as $document) {
                     $idea->files()->create([
                         "file_name" => $document->file_name,
                         "file_path" => $document->file_path,
                     ]);
                 }
-
             }
 
             DB::commit();
-
             return $idea;
 
         } catch (\Throwable $e) {

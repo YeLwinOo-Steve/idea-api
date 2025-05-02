@@ -113,11 +113,11 @@ class ReportRepository extends BasicFunctions
 
             if ($ban) {
 
-                $user->permissions()->detach([12, 13]);
+                $user->permissions()->detach([11, 12]);
 
             } else {
 
-                $targetPermissions = [12, 13];
+                $targetPermissions = [11, 12];
 
                 $existingPermissions = $user->permissions()->pluck('permission_id')->toArray();
 

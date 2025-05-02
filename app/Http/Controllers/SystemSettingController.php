@@ -96,8 +96,6 @@ class SystemSettingController extends Controller
 
     public function exportCSV($id)
     {
-
-
         $checkID = $this->checkID($id);
 
         if ($checkID) {
@@ -109,7 +107,7 @@ class SystemSettingController extends Controller
         if($systemSetting->status){
             return response()->json([
                 "message" => "Cannot export CSV file before the final closure date"
-            ]);
+            ],403);
         }
 
         $ideas = $systemSetting->ideas;
