@@ -55,7 +55,9 @@ class logController extends Controller
             ], 404);
         }
 
-        $this->authorize("view",$id,Log::class);
+
+        $log = Log::findOrFail($id);
+        $this->authorize('view', $log);
 
         $logs = Log::query()->where("user_id",$id)->paginate(20);
 
